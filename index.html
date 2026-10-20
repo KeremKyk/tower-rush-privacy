@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111329">
+  <title>Tower Rush — Privacy and data</title>
+  <style>
+    :root{color-scheme:dark;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#111329;color:#f2f2fb}
+    *{box-sizing:border-box}body{margin:0;padding:24px 18px 36px;line-height:1.6}
+    main{max-width:720px;margin:0 auto}a{color:#78eee0}h1,h2{line-height:1.2}h1{font-size:clamp(27px,6vw,40px)}h2{margin-top:30px;font-size:20px}
+    p,li{color:#d1d4e7}button,.back{display:inline-block;min-height:44px;border:1px solid #5ce8d6;border-radius:10px;padding:10px 14px;background:#182c35;color:#f2f2fb;font:inherit;text-decoration:none;cursor:pointer}
+    .notice{padding:14px;border-left:3px solid #5ce8d6;background:#1a1d35;border-radius:6px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+    #delete-status{min-height:1.5em;color:#a9f5e9}
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="https://keremkyk.itch.io/tower-rush">← Back to Tower Rush</a>
+    <h1>Tower Rush privacy policy</h1>
+    <p><strong>Last updated: October 20, 2026</strong></p>
+    <p>Tower Rush is a standalone arcade game. It does not require an account, collect a player name, offer chat or user posts, or sell in-app purchases.</p>
+
+    <h2>Data stored by the game</h2>
+    <p>The game saves your best height in local storage on this device. This score is not sent to the game developer. It remains until you clear it below or remove the app.</p>
+    <div class="actions"><button type="button" id="clear-local-data">Clear saved game data</button></div>
+    <p id="delete-status" role="status" aria-live="polite"></p>
+
+    <h2>Advertising and consent</h2>
+    <p>The iOS version may show occasional interstitial ads using Google Mobile Ads. The Google User Messaging Platform (UMP) presents consent choices where required. Ad requests are configured as non-personalized in the current build. The SDK may process data such as IP address, device identifiers, diagnostics and crash information, performance information, ad impressions, and interactions to provide, measure, and improve advertising. The exact data depends on the SDK version, region, consent, and final AdMob configuration.</p>
+    <p>You can reopen the available ad privacy choices from the game’s start or game-over screen. Google explains its data use in <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a> and publishes the SDK’s current <a href="https://developers.google.com/admob/ios/privacy/data-disclosure">iOS App Store data disclosure</a>.</p>
+    <p>The current build does not request App Tracking Transparency authorization and is configured for non-personalized ads. If the released SDK or ad settings are changed to track users across other companies’ apps or websites, the app and this policy must be updated before release.</p>
+
+    <h2>Retention and deletion</h2>
+    <p>The saved best height can be removed with the button on this page. Removing Tower Rush also removes its on-device game data. Advertising and consent records handled by Google are subject to Google’s controls and retention practices; use the privacy controls above and Google’s privacy resources to manage those choices.</p>
+
+    <h2>Children’s privacy</h2>
+    <p>The app does not ask for a player’s name, birth date, or contact details. The final age rating and audience must be declared accurately in App Store Connect. If the Kids Category is selected, review the advertising and data flows against Apple’s additional Kids Category requirements.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy questions or help reporting an ad, contact <a href="mailto:arqevongames@gmail.com">arqevongames@gmail.com</a>.</p>
+  </main>
+  <script>
+    document.querySelector('#clear-local-data').addEventListener('click', () => {
+      if (!window.confirm('Clear the saved best height on this device?')) return;
+      try {
+        localStorage.removeItem('tower-rush-best-v1');
+        document.querySelector('#delete-status').textContent = 'Saved game data cleared from this device.';
+        window.setTimeout(() => window.location.replace('index.html'), 500);
+      } catch {
+        document.querySelector('#delete-status').textContent = 'The browser did not allow local data to be cleared. Remove Tower Rush from this device to clear its local data.';
+      }
+    });
+  </script>
+</body>
+</html>
+
